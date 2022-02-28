@@ -18,7 +18,7 @@
   "private": false,
   "scripts": {
     "dev": "yarn build:watch",
-    "build": "npx rimraf dist && npx typescript@~4.2 -p tsconfig.build.json",
+    "build": "npx rimraf dist && npx -p typescript tsc -p tsconfig.build.json",
     "build:main": "tsc -p tsconfig.build.json",
     "build:watch": "tsc -p tsconfig.build.json --watch",
     "lint": "eslint . --ext .ts",
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.14",
+    "@types/node-fetch": "^2.6.1",
     "@types/qunit": "^2.11.3",
     "nock": "^13.2.2",
     "qunit": "^2.17.2",
