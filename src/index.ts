@@ -1,6 +1,6 @@
-import { CompanionFeedbackEvent, SomeCompanionConfigField } from "../../../instance_skel_types";
+import { CompanionFeedbackEvent, SomeCompanionConfigField } from "../types/instance_skel_types";
 import BarcoApi from './barco-api/barco';
-import InstanceSkel from '../../../instance_skel';
+import InstanceSkel from '../types/instance_skel';
 import sleep from './sleep';
 
 interface BarcoClickShareConfig {
