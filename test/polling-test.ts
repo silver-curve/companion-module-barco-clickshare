@@ -4,7 +4,7 @@ import BarcoApi from '../src/barco-api/barco';
 
 qunit.module('Barco API');
 
-qunit.test('get streaming status when in use', async assert => {
+qunit.test('get in use status when in use', async assert => {
   nock('https://1.2.3.4:5000')
     .get('/v2/configuration/system/status')
     .reply(200, {
@@ -19,10 +19,10 @@ qunit.test('get streaming status when in use', async assert => {
 
   let api = new BarcoApi('1.2.3.4', 5000, 'user', 'pass');
   let result = await api.isInUse();
-  assert.equal(result, true);
+  assert.equal(result.inUse, true);
 });
 
-qunit.test('get streaming status when not in use', async assert => {
+qunit.test('get in use status when not in use', async assert => {
   nock('https://1.2.3.4:5000')
     .get('/v2/configuration/system/status')
     .reply(200, {
@@ -37,10 +37,10 @@ qunit.test('get streaming status when not in use', async assert => {
 
   let api = new BarcoApi('1.2.3.4', 5000, 'user', 'pass');
   let result = await api.isInUse();
-  assert.equal(result, false);
+  assert.equal(result.inUse, false);
 });
 
-qunit.test('get streaming status sends authentication', async assert => {
+qunit.test('get in use status sends authentication', async assert => {
   nock('https://1.2.3.4:5000', {
     reqheaders: {
       authorization: 'Basic dXNlcjpwYXNz', // user:pass in base64
@@ -59,7 +59,7 @@ qunit.test('get streaming status sends authentication', async assert => {
 
   let api = new BarcoApi('1.2.3.4', 5000, 'user', 'pass');
   let result = await api.isInUse();
-  assert.equal(result, false);
+  assert.equal(result.inUse, false);
 });
 
 // qunit.test('continues to poll when server times out', async assert => {
